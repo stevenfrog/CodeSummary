@@ -3,9 +3,9 @@
 ## Overview
 
 * [xhr](#xhr)
-* [Popups](#Popups)
-* [AJAX](#AJAX)
-* [dataTables](#dataTables)
+* [Popups](#popups)
+* [AJAX](#ajax)
+* [dataTables](#datatables)
 * [错误处理](#错误处理)
 * [多选单选](#多选单选)
 
@@ -81,6 +81,7 @@ function ajaxUploadFile(fileName) {
     <span class="validation_errors"></span>
 </div>
 ```
+
 
 ```js
 // 补充browse file的部分

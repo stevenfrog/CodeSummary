@@ -1,21 +1,6 @@
-# Code Summary for Workday_Data_Toolkit_Schema_and_Workbook_Frontend
+// Workday_Data_Toolkit_Schema_and_Workbook_Frontend
 
-## Overview
-
-* [xhr](#xhr)
-* [Popups](#popups)
-* [AJAX](#ajax)
-* [dataTables](#datatables)
-* [错误处理](#错误处理)
-* [多选单选](#多选单选)
-
-
-
-
-## xhr
-**这段是用xhr上传文件的例子**
-
-```js
+// 这段是用xhr上传文件的例子
 /**
  * Ajax upload the schemaDefinition file to server only.
  */
@@ -67,9 +52,7 @@ function ajaxUploadFile(fileName) {
     // Send the Data.
     xhr.send(formData);
 }
-```
 
-```html
 // jsp文件部分
 <div class="row select-file-row">
     <p>Select Input File</p>
@@ -80,19 +63,14 @@ function ajaxUploadFile(fileName) {
     </div>
     <span class="validation_errors"></span>
 </div>
-```
 
-
-```js
 // 补充browse file的部分
 //browse file
 $(".file-container :file").css("opacity", "0.001");
 $(".file-container").on("click", ".action-browse", function(){
     $(this).closest(".file-container").find(":file").trigger("click");
 });
-```
 
-```java
 // Java端的Controller并不复杂
 @RequestMapping(value = "extract/schemaDefinitions/external", method = RequestMethod.POST)
 @ResponseStatus(HttpStatus.OK)
@@ -104,14 +82,11 @@ public List<SchemaDefinition> extractFromInputFile(@RequestParam long projectId,
     MultipartFile file = request.getFile(fileHtmlId);
     ...
 }
-```
 
-*******************************************************************************
+===============================================================================
 
-## Popups
-
-**这里是popups的设计, 它设计啦一个popups类专门控制popup的显示**
-```js
+// 这里是popups的设计
+// 它设计啦一个popups类专门控制popup的显示
 function popupInit() {
     var resultCallback;
 
@@ -201,9 +176,8 @@ function popupInit() {
 
 // popups初始化
 var popups = popupInit();
-```
 
-```html
+
 // 这里是个标准的delete popup
 <div id="delete-data-gathering-workbook-popup" class="popup no-table">
     <span class="popup-close"></span>
@@ -220,9 +194,7 @@ var popups = popupInit();
         <span class="button blue-button" data-result="delete">Delete</span>
     </div>
 </div>
-```
 
-```js
 // 触发的js 函数
 // delete data gathering workbook
 function deleteDataWorkbook(rows, table) {
@@ -257,14 +229,10 @@ function deleteDataWorkbook(rows, table) {
         }
     });
 }
-```
 
-*******************************************************************************
+===============================================================================
 
-
-## AJAX
-**这是一个标准的JQuery AJAX请求**
-```js
+// 这是一个标准的JQuery AJAX请求
 $.ajax({
     url : datactx + '/search/schemaInputFiles',
     type : 'GET',
@@ -290,14 +258,11 @@ $.ajax({
     },
     error : errorHandler
 });
-```
 
-*******************************************************************************
+===============================================================================
 
-## dataTables
-**jquery.dataTables.min.js**
-**dataTables 是jquery的一个插件, 主要用于显示table, 很方便**
-```js
+// jquery.dataTables.min.js
+// dataTables 是jquery的一个插件, 主要用于显示table, 很方便
 // 下面是一段table config 的定义
 var tableConfigs = {
     // datagatheringWorkbooks table config
@@ -477,6 +442,7 @@ function initTable(elem, config) {
     return table;
 }
 
+
 // 显示table, if else 主要用于如果table已经渲染过啦, 就只需要重新draw一次
 // 不能删除后, 重复构建, 会出问题, 而且浪费资源
 var tableElem = $('#'+tab).find('table');
@@ -485,11 +451,9 @@ if (!tableElem.hasClass('dataTable')) {
 }else{
     tableElem.DataTable().page( 0 ).draw( false );
 }
-```
 
-*******************************************************************************
-## 错误处理
-```js
+===============================================================================
+// 错误处理
 /**
  * The error handler.
  *
@@ -514,14 +478,9 @@ var errorHandler = function(request, status, error) {
     }
     alert(request.responseText);
 };
-```
 
-*******************************************************************************
+===============================================================================
 
-## 多选单选
-**控制Table多选, 单选**
-
-```js
 // Selection action state handler
 function updateSelectionActionState(table, selected) {
     // 这里是控制多选, 单选的部分
@@ -550,12 +509,9 @@ function updateSelectionActionState(table, selected) {
         $('.table-row-actions .single-action').addClass('disabled');
     }
 }
-```
 
-*******************************************************************************
-## Table事件处理
-
-```js
+===============================================================================
+// Table事件处理
 //============================= Common event handlers ===============================================
 $(function () {
     // Document 事件请都用$(function () {})；包裹, 可以减少全局量
@@ -759,11 +715,9 @@ $(function () {
         $("html").addClass('mozilla');
     }
 });
-```
 
-*******************************************************************************
-## 对不同的页面调用不同的init函数
-```js
+===============================================================================
+// 对不同的页面调用不同的init函数
 //============================= Page dispatcher ===============================================
 $(function () {
     var pageId = $('.main-content').attr('id');
@@ -865,4 +819,3 @@ function initTabProjectUsers(tab){
         tableElem.DataTable().page( 0 ).draw( false );
     }
 }
-```
